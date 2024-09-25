@@ -18,7 +18,6 @@ We ask you to provide **pragmatic** solutions to meet the below requirements:
 
 - For instance, solving this test and matching our business requirements does not necessarily require to setup a database system.
 - You should focus on solutions working **locally**, without worrying about moving it to any kind of production environment.
-- You are not forced to stick with the current choice of libraries, but you won't have extra time to complete the test if you decide to change them.
 
 ## Delivery
 
@@ -39,10 +38,11 @@ The first step requires you to modify the existing codebase to provide a basic i
 
 ## Exercise 2: Improvements on the application (40min)
 
-- It is possible to update the color of tile without using the mouse
-  _Hint: It might be required to still leverage the mouse for selecting a color in the native color picker input_
 - The frontend display is a bit less ugly, and color transitions are animated
 - It is possible to leverage external libraries to achieve this result
+- _Bonus_ It is possible to update the color of tile without using the mouse
+
+_Hint_: It might be required to still leverage the mouse for selecting a color in the native color picker input. Showcase your creativity!
 
 ## Exercise 3: Improvements on the server (1h40min)
 
@@ -50,64 +50,3 @@ The first step requires you to modify the existing codebase to provide a basic i
 - It is possible to leverage external libraries to achieve this result
 - No need to provide authentication
 - _Bonus_: Rate limiting is implemented
-
-If you decide to leverage websockets, we provide the following code for accepting a websocket connection on the server side, using [socket.io](https://socket.io/)
-
-```ts
-import { App } from "uWebSockets.js"; # yarn add uNetworking/uWebSockets.js#v20.30.0
-import { Server } from "socket.io";
-
-const io = new Server();
-
-io.on("connection", (socket) => {
-  console.log("received connection");
-  socket.emit("hello", "world");
-});
-
-// Make sure to create a different app than the API's app
-const wss = App();
-io.attachApp(wss);
-
-wss.listen(3004, () => {
-  console.info(`WSS is listening on http://localhost:3004`);
-});
-```
-
-If you decide to leverage server sent events, your server can return event-stream responses like so:
-
-```ts
-router.route({
-  path: CANVAS_PATH,
-  method: 'GET',
-  schemas: {
-    responses: {
-      200: {
-        type: 'string'
-      } as const
-    }
-  },
-  handler() {
-    // FeTS' `Response` does not allow to return anything else than a plain object, because it is a proxy.
-    // See https://github.com/ardatan/feTS/blob/7334d3086ec95dcd69cadc2be0b6447087a0696e/packages/fets/src/Response.ts#L80
-    return new globalThis.Response(
-      new ReadableStream({
-        async start(controller) {
-          while (true) {
-            controller.enqueue(
-              'data: ' + new Date().toISOString() + '\r\n\r\n'
-            );
-            await setTimeout(1000);
-          }
-        }
-      }),
-      {
-        headers: {
-          'Content-Type': 'text/event-stream',
-          Connection: 'keep-alive',
-          'Cache-Control': 'no-cache'
-        }
-      }
-    );
-  }
-});
-```
