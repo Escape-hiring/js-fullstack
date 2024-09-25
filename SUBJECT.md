@@ -26,7 +26,7 @@ We ask you to provide **pragmatic** solutions to meet the below requirements:
 - You have to complete exercise 1 first, but exercises 2, 3, and 4 can be completed independently.
 - For each exercise, the estimated of time to spend on it is indicated.
 
-### Exercise 1: A basic collaborative canvas (40min)
+### Exercise 1: A basic collaborative canvas
 
 The first step requires you to modify the existing codebase to provide a basic interactive canvas:
 
@@ -36,7 +36,7 @@ The first step requires you to modify the existing codebase to provide a basic i
 - No need to provide rate-limiting
 - No need to provide server-side authentication
 
-## Exercise 2: Improvements on the application (40min)
+## Exercise 2: Improvements on the application
 
 - The frontend display is a bit less ugly, and color transitions are animated
 - It is possible to leverage external libraries to achieve this result
@@ -44,7 +44,7 @@ The first step requires you to modify the existing codebase to provide a basic i
 
 _Hint_: It might be required to still leverage the mouse for selecting a color in the native color picker input. Showcase your creativity!
 
-## Exercise 3: Improvements on the server (1h40min)
+## Exercise 3: Improvements on the server
 
 - With two windows opened, if I update the color of a tile on the first window, I should see the change reflected in the second window with any page reload
 - It is possible to leverage external libraries to achieve this result

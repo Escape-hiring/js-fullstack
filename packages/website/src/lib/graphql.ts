@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/public';
 
 export const gql = async (query: string, variables?: Record<string, unknown>) => {
-	console.log('fetching', env.PUBLIC_API_ENDPOINT, query);
 	return fetch(env.PUBLIC_API_ENDPOINT, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
