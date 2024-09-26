@@ -50,3 +50,7 @@ _Hint_: It might be required to still leverage the mouse for selecting a color i
 - It is possible to leverage external libraries to achieve this result
 - No need to provide authentication
 - _Bonus_: Rate limiting is implemented
+
+## _Bonus_: Make it alive
+
+- There is a button on the website that starts renderring patterns programmatically on the grid. For instance, the button is able to render the circular function _ρ=kθ_ where _k_ is a constant and _θ_ is the angle in radians.

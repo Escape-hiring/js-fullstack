@@ -1,6 +1,6 @@
 # r/ploce
 
-Instructions for the test can be found in [the subject.md file](./subject.md)
+Instructions for the test can be found in [the subject.md file](./SUBJECT.md)
 
 ## Setup
 
