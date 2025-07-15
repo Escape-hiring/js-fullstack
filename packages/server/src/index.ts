@@ -1,34 +1,14 @@
 import { createServer } from 'node:http';
-import { createSchema, createYoga } from 'graphql-yoga';
+import { createYoga } from 'graphql-yoga';
 import { createPubSub } from 'graphql-yoga';
+import { builder } from './schema.js';
 
 export const pubsub = createPubSub<{
   hello: [string];
 }>();
 
 const yoga = createYoga({
-  schema: createSchema({
-    typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-
-      type Subscription {
-        hello: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: () => 'world'
-      },
-      Subscription: {
-        hello: {
-          subscribe: () => pubsub.subscribe('hello'),
-          resolve: (payload) => payload
-        }
-      }
-    }
-  })
+  schema: builder.toSchema()
 });
 
 let i = 0;
@@ -39,6 +19,7 @@ setInterval(() => {
 
 const server = createServer(yoga);
 const port = 1234;
+
 server.listen(port, () => {
   console.info(`Server is running on http://localhost:${port}/graphql`);
 });
