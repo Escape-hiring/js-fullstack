@@ -20,9 +20,9 @@
 <p>Received from the server: {displayed}</p>
 
 <div class="grid">
-	{#each Array.from({ length: size }, (_, i) => i) as i}
+	{#each Array.from({ length: size }, (_, i) => i) as i (i)}
 		<div class="row">
-			{#each Array.from({ length: size }, (_, j) => j) as j}
+			{#each Array.from({ length: size }, (_, j) => j) as j (j)}
 				<div class="cell"></div>
 			{/each}
 		</div>
