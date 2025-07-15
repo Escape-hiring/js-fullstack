@@ -6,7 +6,7 @@
     "packages/server"
   ],
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "^3.6.2"
   },
   "volta": {
     "node": "24.4.0"
