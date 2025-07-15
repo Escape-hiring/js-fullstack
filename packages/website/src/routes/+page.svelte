@@ -2,9 +2,9 @@
 	import { subscribe } from '$lib/graphql';
 	import { onMount } from 'svelte';
 
-	export let data;
+	const { data } = $props();
 
-	$: displayed = JSON.stringify(data, null, 2);
+	const displayed = $derived(JSON.stringify(data, null, 2));
 
 	onMount(() =>
 		subscribe(/* GraphQL */ 'subscription { hello }', (data) => {
